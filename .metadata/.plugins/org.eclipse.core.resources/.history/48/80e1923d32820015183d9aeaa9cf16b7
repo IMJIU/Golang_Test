@@ -1,0 +1,23 @@
+package main
+
+import (
+	"io"
+	"log"
+	"net/http"
+)
+
+type HomeController struct{
+	beego.Controller
+}
+
+func (this *HomeController) Get(){
+	this.Ctx.WriteString("hello world");
+}
+func sayHello(w http.ResponseWriter , r *http.Request){
+	io.WriteString(w,s)
+}
+func main(){
+	beego.Router("/",&HomeController{});
+	beego.Run();
+}
+

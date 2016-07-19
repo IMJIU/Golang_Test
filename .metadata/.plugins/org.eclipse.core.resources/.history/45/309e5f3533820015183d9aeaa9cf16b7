@@ -1,0 +1,21 @@
+package main
+
+import (
+	"io"
+	"log"
+	"net/http"
+)
+
+type myHandler struct{}
+
+
+
+func main(){
+	mux := http.NewServeMux()
+	mux.Handle("/",&myHandler{})
+}
+
+func (*myHandler) ServerHTTP(w http.ResponseWriter,r *http.Request){
+	io.WriteString(w,"url:"+r.URL.String())
+}
+

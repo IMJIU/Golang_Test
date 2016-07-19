@@ -1,0 +1,10 @@
+package routers
+
+import (
+	":E:/runtime-New_configuration/beeTest/src/t07_beego/test/controllers"
+	"github.com/astaxie/beego"
+)
+
+func init() {
+    beego.Router("/", &controllers.MainController{})
+}

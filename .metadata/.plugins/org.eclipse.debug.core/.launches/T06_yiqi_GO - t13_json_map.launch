@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.googlecode.goclipse.launch.goLaunchType">
+<booleanAttribute key="buildArguments_UseDefault" value="true"/>
+<stringAttribute key="buildTarget" value="t13_json_map #build"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/T06_yiqi_GO"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="programArguments" value=""/>
+<booleanAttribute key="programPath_UseDefault" value="true"/>
+<stringAttribute key="project" value="T06_yiqi_GO"/>
+</launchConfiguration>

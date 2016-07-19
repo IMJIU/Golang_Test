@@ -1,0 +1,145 @@
+package main
+
+import "fmt"
+import "time"
+import "runtime"
+import "sync"
+
+func main() {
+//	t00()
+	//t01()
+	doselect()
+	//timeout()
+//	runInfo()
+	//twoprint()
+}
+
+func Count(ch chan int,i int) {
+	fmt.Println("Counting")
+	ch <- i
+}
+/** 
+*一个chan
+*/
+func t00(){
+	ch := make(chan int)
+	for i := 0; i < 10; i++ {
+		go Count(ch,i)
+	}
+	for i := 0; i < 10; i++ {
+		fmt.Println("i=",<-ch)
+	}
+}
+/** 多个chan*/
+func t01(){
+	chs := make([]chan int, 10)
+	for i := 0; i < 10; i++ {
+		chs[i] = make(chan int)
+		go Count(chs[i],i)
+	}
+	for _, ch := range chs {
+		
+		//i:=<-ch
+		//fmt.Println("i=",i)
+		fmt.Println("i=",<-ch)
+	}
+}
+/** select()*/
+func doselect(){
+	ch := make(chan int, 1)
+	j:=0
+	for {
+		if j >100 {
+			break
+		}
+		select {
+			case ch <- 0:
+			case ch <- 1:
+		}
+		i := <-ch
+		j++
+		fmt.Println("Value received:", i)
+	}
+}
+/** 设置超时*/
+func timeout(){
+	ch := make(chan int)
+	// 首先，我们实现并执行一个匿名的超时等待函数
+	timeout := make(chan bool, 1)
+	go func() {
+		time.Sleep(1e9) // 等待1秒钟
+		timeout <- true
+	}()
+	// 然后我们把timeout这个channel利用起来
+	select {
+		case <-ch:
+		// 从ch中读取到数据
+		case <-timeout:
+		// 一直没有从ch中读取到数据，但从timeout中读取到了数据
+	}
+	
+}
+
+type PipeData struct {
+	value   int
+	handler func(int) int
+	next    chan int
+}
+/**用管道传数据*/
+func handle(queue chan *PipeData) {
+	for data := range queue {
+		data.next <- data.handler(data.value)
+	}
+}
+
+
+type Vector []float64
+// 分配给每个CPU的计算任务
+func (v Vector) DoSome(i, n int, u Vector, c chan int) {
+	for ; i < n; i++ {
+		v[i] += u.Op(v[i])
+	}
+	c <- 1 // 发信号告诉任务管理者我已经计算完成了
+}
+func (v Vector) Op(n float64) (float64) {
+	r :=0.0
+	for i:=0;i<len(v);i++{
+		r=v[i]+n
+	}
+	return r
+}
+const NCPU = 16 // 假设总共有16核
+func (v Vector) DoAll(u Vector) {
+	c := make(chan int, NCPU) // 用于接收每个CPU的任务完成信号
+	for i := 0; i < NCPU; i++ {
+		go v.DoSome(i*len(v)/NCPU, (i+1)*len(v)/NCPU, u, c)
+	}
+	// 等待所有CPU的任务完成
+	for i := 0; i < NCPU; i++ {
+		<-c // 获取到一个数据，表示一个CPU计算完成了
+	}
+	// 到这里表示所有计算已经结束
+}
+func runInfo(){
+    fmt.Println(runtime.NumCPU())
+	fmt.Println(runtime.GOMAXPROCS(16))
+	fmt.Println(runtime.NumCPU())
+}
+/** 只执行一次*/
+var a string
+var once sync.Once
+
+func setup() {
+	a = "hello, world"
+	print(a)
+}
+func doprint() {
+	once.Do(setup)
+	print(a)
+}
+func twoprint() {
+	go doprint()
+	go doprint()
+}
+
+

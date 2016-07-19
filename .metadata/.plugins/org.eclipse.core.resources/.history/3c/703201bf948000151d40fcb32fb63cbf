@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+)
+
+//获取指定目录下的所有文件，不进入下一级目录搜索，可以匹配后缀过滤。
+func sumFile(dirPth string) ( err error) {
+	dir, err := ioutil.ReadDir(dirPth)
+	if err != nil {
+		return err
+	}
+	PthSep := string(os.PathSeparator)
+	for _, fi := range dir {
+		if fi.IsDir() { // 忽略目录
+			continue
+		}else{
+			fmt.Print("size:",fi.Size())
+		}
+	}
+	return  nil
+}
+
+
+func main() {
+	//files, err := ListDir("f:\\Go", ".txt")
+	//fmt.Println(files, err)
+	//files, err := WalkDir("f:/", ".pdf")
+	//fmt.Println(files, err)
+	sumFile()
+}

@@ -1,0 +1,9 @@
+com.googlecode.goclipse.compiler.path=E\:\\Go\\bin\\go.exe
+com.googlecode.goclipse.documentor.path=E\:\\Go\\bin\\godoc.exe
+com.googlecode.goclipse.formatter.path=E\:\\Go\\bin\\gofmt.exe
+com.googlecode.goclipse.goroot=E\:\\Go
+console.do_activate=true
+console.info_color=255,255,255
+console.stdout_color=0,255,0
+daemon_path=E\:\\Go\\bin\\gocode.exe
+eclipse.preferences.version=1

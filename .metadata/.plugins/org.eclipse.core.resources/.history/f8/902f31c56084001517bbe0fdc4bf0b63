@@ -1,0 +1,21 @@
+package main
+
+import (
+	"io"
+	"fmt"
+	"math/rand"
+	"base64"
+	)
+
+
+func main() {
+	fmt.Println(getSessionId())
+}
+
+func getSessionId()string {
+	b := make([]byte, 32)
+	if leng, err := io.ReadFull(rand.Read(b)); err != nil {
+		return ""
+	}
+	return base64.URLEncoding.EncodeToString(b)
+}

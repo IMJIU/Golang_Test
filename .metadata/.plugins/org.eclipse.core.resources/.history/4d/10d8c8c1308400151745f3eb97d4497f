@@ -1,0 +1,14 @@
+package main
+import (
+"fmt"
+"labix.org/v2/mgo"
+"labix.org/v2/mgo/bson"
+)
+type Person struct {
+Name string
+Phone string
+}
+func main() {
+session, err := mgo.Dial("server1.example.com,server2.example.com")
+if err != nil {
+panic(err)

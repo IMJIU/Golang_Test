@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;T03_goroutine_proj/src/cg/center.go&apos; to &apos;centerServer.go&apos;" description="Rename resource &apos;center.go&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/cg/center.go" name="centerServer.go" stamp="1446462967677" updateReferences="true"/>
+</session>
