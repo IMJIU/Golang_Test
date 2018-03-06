@@ -25,7 +25,7 @@ func ReadFile(strFileName string) (string, error) {
 }
 
 func main() {
-	str, err := ReadFile("src/t01_file_defer/file_defer.go")
+	str, err := ReadFile("d:\\upload.txt")
 //	str, err := ReadFile("E:/runtime-New_configuration/T05_Go1/src/t01_file_defer/file_defer.go")
 	if err != nil {
 		fmt.Println(err.Error())

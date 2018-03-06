@@ -20,6 +20,6 @@ func Display(arr []int, f MyFuncType) {
 }
 
 func main() {
-	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 0, 0, -1, 9}
 	Display(arr, IsBigThan5)
 }

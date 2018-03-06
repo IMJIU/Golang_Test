@@ -17,20 +17,32 @@ func (this *Student) getAge() int {
 	return this.Age
 }
 
+func (this Student) change()  {
+	 this.Age=5555
+}
+func (this *Student) change2()  {
+	this.Age=5555
+}
+
 func main() {
 
 	//方式1：
-	s1 := new(Student)
+	 s1 := new(Student)
 	s1.Name = "张三"
 	s1.Age = 12
 	s1.class = "21班"
 	fmt.Println(s1)
 
 	//方式2：
-	s1 := Student{Name: "张三", Age: 12, class: "2 班"}
+	s2 := Student{Name: "张三", Age: 12, class: "2 班"}
 
 	//方式3：
-	s1 := Student{"张三", 12, "2 班"}
+	s3 := Student{"张三", 12, "2 班"}
 	
-	fmt.Println(s.getName(), s.getAge())
+	fmt.Println(s1.getName(), s2.getAge(),s3.class)
+	fmt.Println("==============")
+	s1.change()
+	fmt.Println(s1.getAge())
+	s1.change2()//引用类型才能改变值
+	fmt.Println(s1.getAge())
 }

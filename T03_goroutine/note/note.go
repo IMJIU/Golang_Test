@@ -1,8 +1,6 @@
 package t02
 
-import (
-
-)
+import "sync"
 
 func none(){
 	var ch1 chan int // ch1是一个正常的channel，不是单向的

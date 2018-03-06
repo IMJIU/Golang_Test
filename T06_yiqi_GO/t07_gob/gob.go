@@ -12,7 +12,7 @@ type Student struct {
 }
 
 func main() {
-	s := &Student{"zhang three", 19}
+	student := &Student{"zhang three", 19}
 	f, err := os.Create("data.dat")
 	if err != nil {
 		fmt.Println(err.Error())
@@ -22,7 +22,7 @@ func main() {
 	//创建 Encoder 对像
 	encode := gob.NewEncoder(f)
 	//将 s 序列化到 f 文件中
-	encode.Encode(s)
+	encode.Encode(student)
 	//重置文件指针到开始位置
 	f.Seek(0, os.SEEK_SET)
 	decoder := gob.NewDecoder(f)
