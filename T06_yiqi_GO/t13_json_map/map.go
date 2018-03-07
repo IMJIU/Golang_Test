@@ -14,13 +14,13 @@ Json 中的数组被解析为 interface{}数组，
 Json 中的空值解为nil。
 */
 func main() {
-	str := `{"userName":"zhangThree","Age":19}`
+	str := `{"userName":"zhangThree","Age":19,"aa":123.23}`
 	var m map[string]interface{}
 	json.Unmarshal([]byte(str), &m)
 	for k, v := range m {
 		switch v.(type) {
 		case float64:
-			fmt.Println(k, "  int ,value:", v)
+			fmt.Println(k, "  float64 ,value:", v)
 		case string:
 			fmt.Println(k, "   string ,value:", v)
 		default:

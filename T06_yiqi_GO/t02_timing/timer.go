@@ -7,10 +7,10 @@ import (
 
 func main() {
 	fmt.Println(time.Now())
-	c := time.After(2 * time.Second) //返回 channel 类型,10秒后向 channel 发送当前时间
+	c := time.After(10 * time.Second) //返回 channel 类型,10秒后向 channel 发送当前时间
 	t := <-c
 	fmt.Println(t)
-	tm := time.NewTimer(2 * time.Second) //NewTimer 返回 Timer 类型
+	tm := time.NewTimer(10 * time.Second) //NewTimer 返回 Timer 类型
 	t = <-tm.C                            /*Timer 结构中有一个 channel C,10秒后，把当前时间发送到 C*/
 	fmt.Println(t)
 

@@ -24,6 +24,7 @@ func main() {
 			<Name>zhang three</Name>
 			<Age>19</Age>
 			</Student>`
+	str = `<Student><Name>zhang three</Name><Age>19</Age></Student>`
 	var s2 Student
 	xml.Unmarshal([]byte(str), &s2)
 	fmt.Println(s2)

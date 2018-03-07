@@ -7,8 +7,8 @@ import (
 )
 
 type Student struct {
-	Name string
-	Age  int
+	Name    string
+	Age     int
 	getName func() string
 }
 
@@ -19,11 +19,11 @@ func main() {
 		return
 	}
 	defer f.Close()
-	f2 := func()string{
+	f2 := func() string {
 		fmt.Println("f2()")
 		return "kjdfa"
 	};
-	s := &Student{"zhang three ", 19,f2}
+	s := &Student{"zhang three ", 19, f2}
 	//创建 encode 对像
 	encoder := xml.NewEncoder(f)
 	//将 s 序列化到文件中
